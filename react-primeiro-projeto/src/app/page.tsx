@@ -1,4 +1,4 @@
-import { Person } from "@/components/Person";
+import { Card } from "@/components/Card";
 
 const Page = () => {
   return (
@@ -6,20 +6,12 @@ const Page = () => {
       <h1 className="font-bold text-2xl">Olá Mundo</h1>
       <h3>Algum outro texto</h3>
       
-      <Person
-        name="Elon Musk"
-        avatar="https://classic.exame.com/wp-content/uploads/2021/04/Elon-Musk.jpg"
-        roles={['CEO da Tesla', 'CEO da SpaceX']}
-      />
-      <Person
-        name="Jeff Bezos"
-        avatar="https://classic.exame.com/wp-content/uploads/2021/09/GettyImages-1036099078-1.jpg?quality=70&strip=info&w=1024"
-        roles={['CEO da Amazon', 'CEO da Blue Origin']}
-      />
-      <Person 
-        name="João"
-        roles={['algo', 'dono de algo']}
-      />
+      <Card>
+        <>
+          <h3 className="text-3xl font-bold italic">"Frase de efeito"</h3>
+          <p className="text-right text-sm">-- Autor desconhecido</p>
+        </>
+      </Card>
     </div>
   );
 }
