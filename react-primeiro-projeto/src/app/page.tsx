@@ -8,6 +8,7 @@ const Page = () => {
       
       <Card
         phrase="Frase legal"
+        author="alguém"
       />
     </div>
   );
