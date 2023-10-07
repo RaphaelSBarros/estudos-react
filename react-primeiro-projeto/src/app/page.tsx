@@ -1,10 +1,11 @@
-import { EmojiRating } from "@/components/EmojiRating";
-
+import { StudentTable } from "@/components/StudentTable";
+import { students } from "@/data/students";
 
 const Page = () => {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <EmojiRating rate={3.6}/>
+    <div className="container mx-auto">
+      <h1 className="text-5xl mb-5">Lista de Estudantes</h1>
+      <StudentTable students={students}/>
     </div>
   );
 }
