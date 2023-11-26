@@ -3,23 +3,17 @@
 import { useState } from "react";
 
 const Page = () => {
-  const [nameInput, setNameInput] = useState("");
 
-  const handleClickButton = () => {
-    alert(nameInput);
+  const [count, setCount] = useState(0);
+
+  const handleBtnClick = () => {
+    setCount(count +2);
   }
   
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center text-3xl">
-      <input
-      type="text"
-      className="boder border-black p-3 text-xl text-black rounded"
-      placeholder="Digite seu nome"
-      value={nameInput}
-      onChange={e=> setNameInput(e.target.value)}
-      />
-      <p>Seu nome é: {nameInput}</p>
-      <button onClick={handleClickButton}>Mostrar valor</button>
+      <p>{count}</p>
+      <button onClick={handleBtnClick} className="bg-blue-700 text-white p-3 rounded-md">+2</button>
     </div>
   );
 }
