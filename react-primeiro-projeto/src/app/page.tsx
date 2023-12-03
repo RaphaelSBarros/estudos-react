@@ -8,24 +8,27 @@ const Page = () => {
   const [itemInput, setItemInput] = useState('');
 
   const [list, setList] = useState<TodoItem[]>([
-    { label: 'Fazer dever de casa', checked: true },
-    { label: 'Comprar o bolo', checked: false }
+    { id: 1, label: 'Fazer dever de casa', checked: true },
+    { id: 2, label: 'Comprar o bolo', checked: false }
   ]);
 
   const handleAddButton = () => {
     if(itemInput.trim() === '') return;
-    setList([...list, { label: itemInput, checked: false}]);
+    setList([...list, { id: list.length+1, label: itemInput, checked: false}]);
     setItemInput('');
   };
 
-  const deleteItem = (index: number) => {
-    setList(list.filter((item, key) => key !== index))
+  const deleteItem = (id: number) => {
+    setList(list.filter(item => item.id !== id));
   }
 
-  const toggleItem = (index: number) => {
+  const toggleItem = (id: number) => {
     let newList = [...list];
-    newList[index].checked = !newList[index].checked;
-
+    for(let i in newList){
+      if(newList[i].id === id){
+        newList[i].checked = !newList[i].checked;
+      }
+    }
     setList(newList);
   }
 
@@ -44,10 +47,10 @@ const Page = () => {
       </div>
 
       <ul className="w-full max-w-lg list-disc pl-5">
-        {list.map((item, index) => (
-          <li key={index}>
-            <input onClick={() => toggleItem(index)} type="checkbox" checked={item.checked} className="w-6 h-6 mr-3"/>
-            {item.label} - <button onClick={() => deleteItem(index)} className="hover:underline">[ deletar ]</button>
+        {list.map(item => (
+          <li key={item.id}>
+            <input onClick={() => toggleItem(item.id)} type="checkbox" checked={item.checked} className="w-6 h-6 mr-3"/>
+            {item.label} - <button onClick={() => deleteItem(item.id)} className="hover:underline">[ deletar ]</button>
           </li>
         ))}
       </ul>
