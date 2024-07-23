@@ -8,13 +8,16 @@ type Props = {
 }
 
 export const QuestionItem = ({ question, count, onAnswer }: Props) => {
-
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
     const checkQuestion = (key: number) => {
         if(selectedAnswer === null){
             setSelectedAnswer(key);
-            onAnswer(key);
+
+            setTimeout(() => {
+                onAnswer(key);
+                setSelectedAnswer(null)
+            }, 2000);
         }
     }
 
