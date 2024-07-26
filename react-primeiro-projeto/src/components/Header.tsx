@@ -1,25 +1,42 @@
-import { LoggedUserContext } from "@/contexts/LoggedUser"
-import { useContext } from "react"
+import { PostContext } from "@/contexts/PostContext";
+import { useContext, useState } from "react"
 
 export const Header = () => {
-    const LoggedUserCtx = useContext(LoggedUserContext)
+    const PostCtx = useContext(PostContext);
 
-    const handleLogout = () => {
-        LoggedUserCtx?.setName('')
+    const [titleInput, setTitleInput] = useState('');
+    const [bodyInput, setBodyInput] = useState('');
+
+    const handleAddButton = () => {
+        if (titleInput && bodyInput) {
+            PostCtx?.addPost(titleInput, bodyInput);
+            setTitleInput('');
+            setBodyInput('');
+        }
     }
 
     return (
         <header>
             <h1 className="text-3xl">Título da Página</h1>
-            {LoggedUserCtx?.name &&
-            <>
-                <p>Usuário Logado: { LoggedUserCtx?.name }</p>
-                <button onClick={handleLogout}>Sair</button>
-            </>
-            }
-            {(!LoggedUserCtx || LoggedUserCtx.name === '' &&
-                <p>Usuário DESLOGADO</p>
-            )}
+
+            <div className="max-w-xl flex flex-col gap-3 border border-dotted border-gray-400 p-3 my-4">
+                <input 
+                    type="text"
+                    placeholder="Digite um título"
+                    className="border border-gray-300 p-2 text-black text-xl"
+                    value={titleInput}
+                    onChange={e => setTitleInput(e.target.value)}
+                />
+                <textarea
+                    placeholder="Digite um corpo"
+                    className="border border-gray-300 p-2 text-black text-xl"
+                    value={bodyInput}
+                    onChange={e => setBodyInput(e.target.value)}
+                >
+
+                </textarea>
+                <button onClick={handleAddButton} className="bg-blue-500 p-3 text-white rounded-md">Adicionar</button>
+            </div>
         </header>
-    )
+    );
 }
