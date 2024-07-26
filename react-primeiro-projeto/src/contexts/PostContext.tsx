@@ -1,6 +1,6 @@
 import { PostActions, PostReducer } from "@/reducers/PostReducer";
 import { Post } from "@/types/Post";
-import { createContext, Dispatch, ReactNode, useReducer } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
 
 type PostContextType = {
     posts: Post[];
@@ -18,3 +18,5 @@ export const PostProvider = ({ children }: { children: ReactNode}) => {
         </PostContext.Provider>
     );
 }
+
+export const usePosts = () => useContext(PostContext);

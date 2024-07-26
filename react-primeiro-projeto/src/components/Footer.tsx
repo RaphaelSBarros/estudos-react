@@ -1,8 +1,7 @@
-import { PostContext } from "@/contexts/PostContext"
-import { useContext } from "react"
+import { usePosts } from "@/contexts/PostContext"
 
 export const Footer = () => {
-    const PostCtx = useContext(PostContext);
+    const PostCtx = usePosts();
 
     return (
         <footer>
