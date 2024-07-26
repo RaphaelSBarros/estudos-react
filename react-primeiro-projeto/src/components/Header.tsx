@@ -1,4 +1,3 @@
-import { CountContext, CountInitialData } from "@/contexts/CountContext"
 import { OnlineUSers } from "./OnlineUsers"
 
 export const Header = () => {
