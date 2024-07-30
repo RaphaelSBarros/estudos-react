@@ -12,6 +12,12 @@ const Page = () => {
       .then(json => {
         setUsers(json);
       })
+      .catch(() => {
+        console.log("DEU ALGUM ERRO")
+      })
+      .finally(() => {
+        console.log("FINALIZOU TUDO")
+      })
   }, []);
 
   return (
