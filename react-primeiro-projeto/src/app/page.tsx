@@ -23,8 +23,27 @@ const Page = () => {
     getUsers()
   }, []);
 
+  const handleAddNewPost = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json; chatset=UTF-8'
+      },
+      body: JSON.stringify({
+        title: 'Post de teste',
+        body: 'Corpo de teste',
+        userId: 99
+      })
+    });
+    const json = await res.json();
+
+    console.log(json);
+  }
+
   return (
       <div className="container mx-auto">
+        <button onClick={handleAddNewPost}>Adicionar novo Post</button>
+
         <h1 className="text-3xl">Lista de Usuários</h1>
         {loading && "Carregando..."}
         {!loading && users.length > 0 &&
