@@ -1,11 +1,10 @@
 "use client"
 
-import axios from "axios";
+import { api } from "@/utils/api";
 
 const Page = () => {
-
   const handleAddPosts = async () => {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts',{
+    const response = await api.post('/posts',{
       userId: 98,
       title: 'Título do post',
       body: 'Body do post'
