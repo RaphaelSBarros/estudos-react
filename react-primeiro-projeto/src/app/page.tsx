@@ -7,18 +7,20 @@ const Page = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<User[]>([]);
 
+  const getUsers = async () => {
+    setLoading(true)
+    try{
+      const res = await fetch('https://jsonplaceholder.typicode.com/users');
+      const json = await res.json()
+      setUsers(json)
+    } catch(err) {
+      console.log('DEU ERRO')
+    }
+    setLoading(false)
+  }
+
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(json => {
-        setUsers(json);
-      })
-      .catch(() => {
-        console.log("DEU ALGUM ERRO")
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    getUsers()
   }, []);
 
   return (
