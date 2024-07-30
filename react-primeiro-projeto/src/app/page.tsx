@@ -4,22 +4,19 @@ import axios from "axios";
 
 const Page = () => {
 
-  const handleGetPosts = async () => {
-    const requestParams = {
-      postId: 1,
-      sort: 'desc'
-    }
-
-    const response = await axios.get('https://jsonplaceholder.typicode.com/comments?postId=1',{
-      params: requestParams
+  const handleAddPosts = async () => {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/posts',{
+      userId: 98,
+      title: 'Título do post',
+      body: 'Body do post'
     });
     
-    console.log(response.data)
+    console.log(response)
   }
-  
+
   return (
       <div className="container mx-auto">
-        <button onClick={handleGetPosts}>Pegar Posts</button>
+        <button onClick={handleAddPosts}>Inserir Posts</button>
       </div>
   );
 }
